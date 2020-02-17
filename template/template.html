@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="../applications/metadata.js"></script>
+		<script>
+			//Parameters
+			
+			
+			function findGetParameter(parameterName) {
+				var result = null,
+					tmp = [];
+				var items = location.search.substr(1).split("&");
+				for (var index = 0; index < items.length; index++) {
+					tmp = items[index].split("=");
+					if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+				}
+				return result;
+			}
+
+			var parameter = findGetParameter("parameter");
+			if(parameter === null){parameter = "DefaultValue";}
+			//parameter = parseInt(parameter); //Add this if the parameter is a number value (parseInt or parseFloat)
+			
+		
+			//Paths
+			var thisPageName = "template.html"; //<========= REPLACE VALUE		
+			var currentPath = window.location.protocol + "//" + window.location.host + window.location.pathname;
+			var ROOTPATH = currentPath.replace(thisPageName, ""); //<=== Could be useful
+				
+			//LISTENER FROM JS FILE:
+			EventBridge.scriptEventReceived.connect(function(message){
+
+				//messageObj = parseJSON(message);
+				
+				//react to the "message" string or to the "messageObj" JSON object. 
+				
+            });
+
+			function templateFonctionCommunicateWithJs(optional){
+
+				//Exemple of sturctured data to transmit
+				var dataObj = {
+					"action": "action_name",
+					"info": "any info You want to transmit"
+				};
+				
+				EventBridge.emitWebEvent(JSON.stringify(dataObj));
+
+			}
+
+
+
+		</script>
+		<style>
+		
+			body {
+				background: #73758c;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				color: #FFFFFF;
+				font-weight: 600;
+				text-decoration: none;
+				font-style: normal;
+				font-variant: normal;
+				text-transform: none;
+			}
+
+		</style>
+	</head>
+	<body>
+	
+		<!-- Your UI here---->
+	
+	</body>
+</html>
